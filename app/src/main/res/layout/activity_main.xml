@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="es.uja.ejemplostema4.MainActivity">
+
+    <ScrollView
+        android:id="@+id/fragmentinfo_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragmentinfo_frame"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/fragmentinfo_helptext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_connectivity_networking"
+            android:textAppearance="@style/blueSmall" />
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fragmentinfo_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33b5e5"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/fragmentinfo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/app_networking"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/framentmenu_launchbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/menu_startexample"
+        android:onClick="onClick" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/network"
+        android:contentDescription="@string/app_networking"
+        android:layout_below="@+id/fragmentinfo_scrollview"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
