@@ -94,6 +94,7 @@ public class ServicioConectar extends Service {
      */
     public class HebraConectarSimple implements Runnable {
 
+        InetSocketAddress mServerAddress=null;
         String mResponse = "";
         String mRespuesta = "";
         private InetSocketAddress mIp = null;
@@ -103,15 +104,16 @@ public class ServicioConectar extends Service {
         public HebraConectarSimple(Handler handler, InetSocketAddress ip) {
 
             mHandler=handler;
-            mIp = ip;
+            mServerAddress = ip;
         }
 
 
-        private void enviarWeb(String datos){
+        private void enviarWeb(String datos,String mimetype){
             if(mHandler!=null) {
                 Message mensaje = Message.obtain(mHandler, NetworkActivity.MESSAGE_WEBREAD);
                 Bundle datosmensaje = new Bundle();
                 datosmensaje.putString(NetworkActivity.MESSAGE_WEBREAD_DATA, datos);
+                datosmensaje.putString(NetworkActivity.MESSAGE_WEBREAD_MIMETYPE, mimetype);
                 mensaje.sendToTarget();
             }
         }
@@ -122,9 +124,9 @@ public class ServicioConectar extends Service {
                 //Se crea el socket TCP
                 cliente = new Socket();
                 //Se realiza la conexión al servidor
-                cliente.connect(mIp);
+                cliente.connect(mServerAddress);
                 //Se leen los datos del buffer de entrada
-                mostrarNotificacion("Iniciando descarga de "+mIp.toString());
+                mostrarNotificacion("Iniciando descarga de "+mServerAddress.toString());
                 BufferedReader bis = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
                 DataOutputStream dos = new DataOutputStream(cliente.getOutputStream());
 
@@ -142,7 +144,7 @@ public class ServicioConectar extends Service {
                 dos.close();
                 cliente.close();
                 mostrarNotificacion("Finalizando conexión con "+mIp.toString());
-                enviarWeb(mFullData);
+                enviarWeb(mFullData,"text/html");
             } catch (UnknownHostException e) {
                 e.printStackTrace();
                 mRespuesta = "UnknownHostException: " + e.toString();

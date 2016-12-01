@@ -41,6 +41,7 @@ public class NetworkActivity extends AppCompatActivity {
 
     public static final int MESSAGE_WEBREAD=1;
     public static final String MESSAGE_WEBREAD_DATA="webreaddata";
+    public static final String MESSAGE_WEBREAD_MIMETYPE="webmimetype";
 
 	private ProgressBar progressBar=null;
 	private NetworkWebFragment web = null;
@@ -67,16 +68,19 @@ public class NetworkActivity extends AppCompatActivity {
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message inputMessage) {
-                String respuesta = "";
+                String datos = "";
+                String mimeType = "";
                 // Obtiene el mensaje de la hebra de conexión.
                 switch (inputMessage.what) {
                     case MESSAGE_WEBREAD:
-                        respuesta = inputMessage.getData().getString(MESSAGE_WEBREAD_DATA);
-                        if (respuesta != null) {
+                        datos = inputMessage.getData().getString(MESSAGE_WEBREAD_DATA);
+                        mimeType = inputMessage.getData().getString(MESSAGE_WEBREAD_MIMETYPE);
+
+                        if (datos != null) {
 
 
-                            Log.d("Handler", "Recibido: " + respuesta);
-                            webView.loadData(respuesta,"text/html","UTF-8");
+                            Log.d("Handler", "Recibido: " + datos);
+                            webView.loadData(datos,mimeType,"UTF-8");
                         }
                         break;
                 }
@@ -288,7 +292,7 @@ public class NetworkActivity extends AppCompatActivity {
 	}
 	
 	/**
-	 * Se ejecuta al pulsar el bot�n conectar
+	 * Se ejecuta al pulsar el botón conectar
 	 * 
 	 * @param view
 	 */
@@ -345,6 +349,16 @@ public class NetworkActivity extends AppCompatActivity {
 
 	}
 
+    private void enviarWeb(String datos,String mimetype){
+        if(mHandler!=null) {
+            Message mensaje = Message.obtain(mHandler, NetworkActivity.MESSAGE_WEBREAD);
+            Bundle datosmensaje = new Bundle();
+            datosmensaje.putString(NetworkActivity.MESSAGE_WEBREAD_DATA, datos);
+            datosmensaje.putString(NetworkActivity.MESSAGE_WEBREAD_MIMETYPE, mimetype);
+            mensaje.sendToTarget();
+        }
+    }
+
 	// Given a URL, establishes an HttpUrlConnection and retrieves
 	// the web page content as a InputStream, which it returns as
 	// a string.
@@ -383,7 +397,7 @@ public class NetworkActivity extends AppCompatActivity {
 				 task.onProgressUpdate(contentAsString.length());
 			}
 			
-			webView.loadData(contentAsString, mimeType, encoding);
+			enviarWeb(contentAsString,mimeType);
 			//Convert the InputStream into a string
 			
 			return contentAsString;
