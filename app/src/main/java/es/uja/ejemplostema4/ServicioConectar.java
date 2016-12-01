@@ -5,8 +5,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.app.NotificationManager;
 import android.widget.Toast;
@@ -27,15 +29,10 @@ public class ServicioConectar extends Service {
     protected int mPuerto = 80;
     private int mId = 1;
     private String mFullData="";
-    private Handler mHandler=null;
     private NotificationManager mNotificacionManager=null;
 
-    public ServicioConectar(Handler handler) {
-        mHandler=handler;
-    }
 
     public ServicioConectar() {
-        mHandler=null;
     }
 
     @Override
@@ -58,11 +55,12 @@ public class ServicioConectar extends Service {
                 mPuerto = intent.getIntExtra(EXTRA_PORT, mPuerto);
                 InetSocketAddress direccion = new InetSocketAddress(mIp, mPuerto);
 
-                new Thread(new HebraConectarSimple(direccion)).start();
+                new Thread(new HebraConectarSimple(NetworkActivity.mHandler,direccion)).start();
             }
         }
         return START_NOT_STICKY;
     }
+
 
     private void mostrarNotificacion(String mensaje) {
 
@@ -99,11 +97,24 @@ public class ServicioConectar extends Service {
         String mResponse = "";
         String mRespuesta = "";
         private InetSocketAddress mIp = null;
+        private Handler mHandler=null;
 
-        public HebraConectarSimple(InetSocketAddress ip) {
+
+        public HebraConectarSimple(Handler handler, InetSocketAddress ip) {
+
+            mHandler=handler;
             mIp = ip;
         }
 
+
+        private void enviarWeb(String datos){
+            if(mHandler!=null) {
+                Message mensaje = Message.obtain(mHandler, NetworkActivity.MESSAGE_WEBREAD);
+                Bundle datosmensaje = new Bundle();
+                datosmensaje.putString(NetworkActivity.MESSAGE_WEBREAD_DATA, datos);
+                mensaje.sendToTarget();
+            }
+        }
         @Override
         public void run() {
             Socket cliente;
@@ -131,6 +142,7 @@ public class ServicioConectar extends Service {
                 dos.close();
                 cliente.close();
                 mostrarNotificacion("Finalizando conexión con "+mIp.toString());
+                enviarWeb(mFullData);
             } catch (UnknownHostException e) {
                 e.printStackTrace();
                 mRespuesta = "UnknownHostException: " + e.toString();

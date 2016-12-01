@@ -49,7 +49,7 @@ public class NetworkActivity extends AppCompatActivity {
 	private WebView 	webView=null;
 
 
-    private Handler mHandler=null;//Handler para recibir los mensajes de las hebras de trabajo
+    public static Handler mHandler=null;//Handler para recibir los mensajes de las hebras de trabajo
 	
 	boolean conectado = false;
 
@@ -59,6 +59,10 @@ public class NetworkActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_network);
+
+		webView = (WebView) findViewById(R.id.network_web_webView);
+		//WebSettings webSettings = webView.getSettings();
+		//webSettings.setJavaScriptEnabled(true);
 
         mHandler = new Handler() {
             @Override
@@ -70,7 +74,9 @@ public class NetworkActivity extends AppCompatActivity {
                         respuesta = inputMessage.getData().getString(MESSAGE_WEBREAD_DATA);
                         if (respuesta != null) {
 
+
                             Log.d("Handler", "Recibido: " + respuesta);
+                            webView.loadData(respuesta,"text/html","UTF-8");
                         }
                         break;
                 }
@@ -94,9 +100,7 @@ public class NetworkActivity extends AppCompatActivity {
 		}
 		
 		
-		webView = (WebView) findViewById(R.id.network_web_webView);
-		//WebSettings webSettings = webView.getSettings();
-		//webSettings.setJavaScriptEnabled(true);
+
 		
 		final NetworkURLFragment uri = (NetworkURLFragment) fm
 				.findFragmentById(R.id.layout_fragment_network_URL);
