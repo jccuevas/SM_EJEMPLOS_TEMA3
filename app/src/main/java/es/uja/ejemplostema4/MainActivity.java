@@ -15,10 +15,22 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Inicia la actividad de ejemplos de red
+     *
      * @param view
      */
-    public void onClick(View view){
-        Intent networking = new Intent(this, NetworkActivity.class);
-        startActivity(networking);
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.main_launch_example1:
+                Intent networking = new Intent(this, NetworkActivity.class);
+                startActivity(networking);
+                break;
+            case R.id.main_launch_example2:
+                Intent service = new Intent(this, ServiceActivity.class);
+                startActivity(service);
+                break;
+        }
     }
+
+
 }

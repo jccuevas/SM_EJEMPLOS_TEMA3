@@ -291,24 +291,7 @@ public class NetworkActivity extends AppCompatActivity {
 
 	}
 	
-	/**
-	 * Se ejecuta al pulsar el botón conectar
-	 * 
-	 * @param view
-	 */
-	public void onNetworkService(View view) {
-		FragmentManager fm = getSupportFragmentManager();
-		NetworkURLFragment urifragment = (NetworkURLFragment) fm
-				.findFragmentById(R.id.layout_fragment_network_URL);
 
-		if (urifragment != null) {
-			Intent conecta= new Intent(this,ServicioConectar.class);
-			conecta.putExtra(ServicioConectar.EXTRA_IP,urifragment.getURI().getHost());
-			conecta.putExtra(ServicioConectar.EXTRA_PORT,urifragment.getURI().getPort());
-			startService(conecta);
-		}
-
-	}
 
 	public String conectaSocket(URL url) {
 

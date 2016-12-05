@@ -11,15 +11,19 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.app.NotificationManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URL;
 import java.net.UnknownHostException;
 
 public class ServicioConectar extends Service {
@@ -30,6 +34,8 @@ public class ServicioConectar extends Service {
     private int mId = 1;
     private String mFullData="";
     private NotificationManager mNotificacionManager=null;
+
+    public static final String DEBUG_TAG = "ServicioConectar";
 
 
     public ServicioConectar() {
@@ -51,7 +57,6 @@ public class ServicioConectar extends Service {
         if (intent != null) {
             if (intent.hasExtra(EXTRA_IP)) {
                 mIp = intent.getStringExtra(EXTRA_IP);
-
                 mPuerto = intent.getIntExtra(EXTRA_PORT, mPuerto);
                 InetSocketAddress direccion = new InetSocketAddress(mIp, mPuerto);
 
@@ -86,6 +91,65 @@ public class ServicioConectar extends Service {
     public void onDestroy() {
         super.onDestroy();
         Toast.makeText(this,"Finalizando servicio...", Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    // Given a URL, establishes an HttpUrlConnection and retrieves
+    // the web page content as a InputStream, which it returns as
+    // a string.
+    private String downloadUrl(String myurl) throws IOException {
+        InputStream is = null;
+        String result = "";
+
+        HttpURLConnection conn = null;
+        try {
+            String contentAsString="";
+            String tempString="";
+            URL url = new URL(myurl);
+            System.out.println("Abriendo conexión: " + url.getHost()
+                    + " puerto=" + url.getPort());
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Starts the query
+            conn.connect();
+            final int response = conn.getResponseCode();
+            final int contentLength = conn.getHeaderFieldInt("Content-length",1000);
+            String mimeType=conn.getHeaderField("Content-Type");
+            String encoding=mimeType.substring(mimeType.indexOf(";"));
+
+
+            Log.d(DEBUG_TAG, "The response is: " + response);
+            is = conn.getInputStream();
+
+            BufferedReader br = new BufferedReader( new InputStreamReader(is, "UTF-8"));
+
+            while((tempString=br.readLine())!=null)
+            {
+                contentAsString = contentAsString + tempString;
+
+            }
+
+
+            //Convert the InputStream into a string
+
+            return contentAsString;
+        } catch (IOException e) {
+            result = "Excepción: " + e.getMessage();
+            System.out.println(result);
+
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+            if (is != null) {
+                is.close();
+                conn.disconnect();
+            }
+        }
+        return result;
     }
 
     /**

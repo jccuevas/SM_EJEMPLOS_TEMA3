@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Ejemplos Tema 4</string>
     <string name="app_networking">Networking</string>
-    <string name="menu_connectivity_networking">En este ejemplo se muestran diferentes formas de conexión a un recurso remoto, como a través de la clase HttpUrlConnection, sockets. Se muestra también la forma de crear tareas asíncronas y un ejemplo de Servicio</string>
+    <string name="networking_ejemplo1">En este ejemplo se muestran diferentes formas de conexión a un recurso remoto, como a través de la clase HttpUrlConnection, sockets. Se muestra también la forma de crear tareas asíncronas y un ejemplo de Servicio</string>
+    <string name="networking_ejemplo2">Ejemplo de Servicio</string>
+    <string name="networking_ejemplo_title2">Service</string>
+    <string name="networking_ejemplo_title">Networking</string>
     <string name="menu_startexample">Iniciar ejemplo</string>
     <string name="network_url_URL">URL</string>
     <string name="hint_network_url_URL">introduce la url</string>

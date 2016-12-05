@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/layout_fragment_network_navigation"
+            android:name="es.uja.ejemplostema4.NetworkNavigationFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/layout_network_navigation"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/layout_fragment_network_web"
+            android:name="es.uja.ejemplostema4.NetworkWebFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/layout_network_web" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/layout_fragment_network_URL"
+        android:name="es.uja.ejemplostema4.NetworkURLFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/layout_network_url" />
+
+</LinearLayout>
