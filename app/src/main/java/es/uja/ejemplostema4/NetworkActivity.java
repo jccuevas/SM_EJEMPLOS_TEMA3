@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 
@@ -47,6 +48,7 @@ public class NetworkActivity extends AppCompatActivity {
 	private NetworkWebFragment web = null;
 	private DownloadWebpageText task=null;
 	private EditText	postParams=null;
+    private EditText	mURL=null;
 	private WebView 	webView=null;
 
 
@@ -109,7 +111,7 @@ public class NetworkActivity extends AppCompatActivity {
 		final NetworkURLFragment uri = (NetworkURLFragment) fm
 				.findFragmentById(R.id.layout_fragment_network_URL);
 
-		
+		mURL = (EditText)findViewById(R.id.network_url_editText_URL);
 		
 		postParams = (EditText)findViewById(R.id.network_navigation_edittext_postparams);
 		
@@ -259,12 +261,10 @@ public class NetworkActivity extends AppCompatActivity {
 				.findFragmentById(R.id.layout_fragment_network_URL);
 
 		if (uri != null) {
-
 			progressBar.setProgress(0);
 			web.setText("");
 			taskPost = new PostQuery();
 			taskPost.execute(uri.getURLString(),postParams.getEditableText().toString());
-
 		}
 
 	}
@@ -290,7 +290,6 @@ public class NetworkActivity extends AppCompatActivity {
 		}
 
 	}
-	
 
 
 	public String conectaSocket(URL url) {
@@ -384,12 +383,20 @@ public class NetworkActivity extends AppCompatActivity {
 			//Convert the InputStream into a string
 			
 			return contentAsString;
-		} catch (IOException e) {
+		} catch (MalformedURLException mex){
+            result = "URL mal formateada: " + mex.getMessage();
+            System.out.println(result);
+            mURL.post(new Runnable() {
+                @Override
+                public void run() {
+                    mURL.setError("Url Incorrecta");
+                }
+            });
+        } catch (IOException e) {
 			result = "Excepción: " + e.getMessage();
 			System.out.println(result);
 
-			// Makes sure that the InputStream is closed after the app is
-			// finished using it.
+
 		} finally {
 			if (is != null) {
 				is.close();
@@ -451,7 +458,13 @@ public class NetworkActivity extends AppCompatActivity {
 			//Convert the InputStream into a string
 			// contentAsString = readIt(is, len);
 			return contentAsString;
-		} catch (IOException e) {
+        } catch (MalformedURLException e) {
+            result = "URL incorrecta: " + e.getMessage();
+            System.out.println(result);
+
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } catch (IOException e) {
 			result = "Excepción: " + e.getMessage();
 			System.out.println(result);
 
