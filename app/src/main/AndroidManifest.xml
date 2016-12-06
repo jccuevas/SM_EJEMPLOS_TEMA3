@@ -21,7 +21,8 @@
 
 
         <activity android:label="@string/app_networking" android:name=".NetworkActivity" android:theme="@style/AppTheme"></activity>
-        <service android:label="@string/servicio_etiqueta" android:name=".ServicioConectar" ></service>
+        <activity android:label="@string/app_service_weather" android:name=".ServiceActivity" android:theme="@style/AppTheme"></activity>
+        <service android:label="@string/service_label" android:name=".WeatherService" ></service>
 
     </application>
 

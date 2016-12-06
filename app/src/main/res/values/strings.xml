@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Ejemplos Tema 4</string>
     <string name="app_networking">Networking</string>
+    <string name="app_service_weather">Servicio Metereológico</string>
     <string name="networking_ejemplo1">En este ejemplo se muestran diferentes formas de conexión a un recurso remoto, como a través de la clase HttpUrlConnection, sockets. Se muestra también la forma de crear tareas asíncronas y un ejemplo de Servicio</string>
     <string name="networking_ejemplo2">Ejemplo de Servicio</string>
     <string name="networking_ejemplo_title2">Service</string>
@@ -17,7 +18,10 @@
     <string name="fragment_navigation_startservice">Arrancar servicio</string>
     <string name="panel_listapersonalizada">Lista personalizada</string>
     <string name="network_url_browse">Ir</string>
+    <string name="network_url_error">Error en la dirección</string>
     <string name="network_error_conexion">Error de conexión</string>
-    <string name="servicio_nuevo">Iniciando servicio</string>
-    <string name="servicio_etiqueta">Servicio TCP</string>
+    <string name="service_startup">Iniciando servicio</string>
+    <string name="service_label">Servicio meteorológico</string>
+    <string name="service_weather">Icono de temperatura</string>
+    <string name="contentdescription_service_weather">icono del servicio meteorológico</string>
 </resources>

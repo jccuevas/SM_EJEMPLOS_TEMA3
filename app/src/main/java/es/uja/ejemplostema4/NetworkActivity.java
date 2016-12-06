@@ -389,7 +389,7 @@ public class NetworkActivity extends AppCompatActivity {
             mURL.post(new Runnable() {
                 @Override
                 public void run() {
-                    mURL.setError("Url Incorrecta");
+                    mURL.setError(getString(R.string.network_url_error));
                 }
             });
         } catch (IOException e) {

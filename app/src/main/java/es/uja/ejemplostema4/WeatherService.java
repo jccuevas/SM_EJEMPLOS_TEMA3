@@ -3,14 +3,12 @@ package es.uja.ejemplostema4;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
-import android.app.NotificationManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,14 +17,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
 
-public class ServicioConectar extends Service {
+public class WeatherService extends Service {
     public static final String EXTRA_IP = "servicio_ip";
     public static final String EXTRA_PORT = "servicio_puerto";
     protected String mIp = "150.214.170.105";
@@ -38,7 +35,7 @@ public class ServicioConectar extends Service {
     public static final String DEBUG_TAG = "ServicioConectar";
 
 
-    public ServicioConectar() {
+    public WeatherService() {
     }
 
     @Override
@@ -52,7 +49,7 @@ public class ServicioConectar extends Service {
         mId=startId; //Se guarda el identificador para poder parar el servicio
                      // si fuera necesario
         mNotificacionManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Toast.makeText(this,getString(R.string.servicio_nuevo), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,getString(R.string.service_startup), Toast.LENGTH_SHORT).show();
 
         if (intent != null) {
             if (intent.hasExtra(EXTRA_IP)) {
@@ -72,13 +69,13 @@ public class ServicioConectar extends Service {
         // Si se quiere que se inicie la actividad cuando se toque en
         // la notificación se crea un PendingIntent
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, ServicioConectar.class), 0);
+                new Intent(this, WeatherService.class), 0);
 
         // Preparar la información a mostrar en el panel de notificaciones.
         NotificationCompat.Builder notificacion =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_communication) // Icono a mostrar
-                        .setContentTitle(getText(R.string.servicio_etiqueta)) //Titulo
+                        .setContentTitle(getText(R.string.service_label)) //Titulo
                         .setContentText(mensaje)// Contenido
                         .setContentIntent(contentIntent); //Intent a abrir
 
