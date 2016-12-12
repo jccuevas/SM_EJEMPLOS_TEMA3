@@ -131,7 +131,7 @@ public class ServiceFTP extends Service {
     }
 
     public byte[] readStream(InputStream is, final String codificacion) {
-        byte[] datos = new byte[1024];
+        byte[] datos = new byte[64];
 
         BufferedReader in
                 = null;
@@ -139,9 +139,9 @@ public class ServiceFTP extends Service {
             final ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
 
             while (is.available() > 0) {
-                is.read(datos);
+
                 System.out.println(new String(datos));
-                baos.write(datos);
+                baos.write(is.read());
             }
             return baos.toByteArray();
         } catch (UnsupportedEncodingException e) {
