@@ -75,7 +75,7 @@ public class WeatherService extends Service {
         NotificationCompat.Builder notificacion =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_communication) // Icono a mostrar
-                        .setContentTitle(getText(R.string.service_label)) //Titulo
+                        .setContentTitle(getText(R.string.service_weather_label)) //Titulo
                         .setContentText(mensaje)// Contenido
                         .setContentIntent(contentIntent); //Intent a abrir
 

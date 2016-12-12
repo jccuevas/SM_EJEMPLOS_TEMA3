@@ -3,10 +3,12 @@
     <string name="app_networking">Networking</string>
     <string name="app_service_weather">Servicio Metereológico</string>
     <string name="networking_ejemplo1">En este ejemplo se muestran diferentes formas de conexión a un recurso remoto, como a través de la clase HttpUrlConnection, sockets. Se muestra también la forma de crear tareas asíncronas y un ejemplo de Servicio</string>
-    <string name="networking_ejemplo2">Ejemplo de Servicio</string>
+    <string name="networking_ejemplo2">Ejemplos de Servicios</string>
     <string name="networking_ejemplo_title2">Service</string>
     <string name="networking_ejemplo_title">Networking</string>
     <string name="menu_startexample">Iniciar ejemplo</string>
+    <string name="menu_startservicio1">Servicio básico</string>
+    <string name="menu_startservicio2">Servicio del clima</string>
     <string name="network_url_URL">URL</string>
     <string name="hint_network_url_URL">introduce la url</string>
     <string name="fragment_navigation_connect">Get</string>
@@ -21,7 +23,13 @@
     <string name="network_url_error">Error en la dirección</string>
     <string name="network_error_conexion">Error de conexión</string>
     <string name="service_startup">Iniciando servicio</string>
-    <string name="service_label">Servicio meteorológico</string>
+    <string name="service_weather_label">Servicio meteorológico</string>
+    <string name="service_basic_label">Servicio básico FTP</string>
     <string name="service_weather">Icono de temperatura</string>
     <string name="contentdescription_service_weather">icono del servicio meteorológico</string>
+
+    <string name="service_url">ftp://ftp.ujaen.es/welcome.msg</string>
+    <string name="service_descargar">Descargar</string>
+    <string name="service_description">Ejemplo de descarga de un recurso con FTP</string>
+    <string name="service_descargando">Descargando...</string>
 </resources>

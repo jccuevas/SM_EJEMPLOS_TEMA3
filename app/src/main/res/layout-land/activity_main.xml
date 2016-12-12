@@ -42,7 +42,7 @@
                 android:id="@+id/main_frame_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#33b5e5"
+                android:background="@color/colorPrimaryDark"
                 android:padding="5dp">
 
                 <TextView
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/networking_ejemplo1"
-                    android:textAppearance="@style/blueSmall" />
+                    android:textAppearance="@style/normalText" />
             </ScrollView>
 
             <Button
@@ -88,7 +88,7 @@
                 android:id="@+id/main_frame_right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#33b5e5"
+                android:background="@color/colorPrimaryDark"
                 android:padding="5dp">
 
                 <TextView
@@ -100,6 +100,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
             </FrameLayout>
+
             <ScrollView
                 android:id="@+id/main_scrollview_right"
                 android:layout_width="match_parent"
@@ -111,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/networking_ejemplo2"
-                    android:textAppearance="@style/blueSmall" />
+                    android:textAppearance="@style/normalText" />
             </ScrollView>
 
             <Button
@@ -119,7 +120,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:text="@string/menu_startexample" />
+                android:text="@string/menu_startservicio1" />
+            <Button
+                android:id="@+id/main_launch_example3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="@string/menu_startservicio2" />
         </LinearLayout>
 
     </LinearLayout>

@@ -26,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(networking);
                 break;
             case R.id.main_launch_example2:
-                Intent service = new Intent(this, ServiceActivity.class);
-                startActivity(service);
+                Intent serviciobasico = new Intent(this, BasicServiceActivity.class);
+                startActivity(serviciobasico);
+                break;
+            case R.id.main_launch_example3:
+                Intent serviceW = new Intent(this, WeatherActivity.class);
+                startActivity(serviceW);
                 break;
         }
     }

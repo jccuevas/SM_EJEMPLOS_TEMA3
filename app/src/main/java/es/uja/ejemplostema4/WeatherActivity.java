@@ -7,14 +7,13 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class ServiceActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity {
 	private static final String DEBUG_TAG = null;
 
     public static final int MESSAGE_WEBREAD=1;
@@ -34,7 +33,7 @@ public class ServiceActivity extends AppCompatActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_service);
+		setContentView(R.layout.layout_weather_activity);
 
 
 
@@ -88,12 +87,10 @@ public class ServiceActivity extends AppCompatActivity {
 	 * @param view
 	 */
 	public void onNetworkService(View view) {
-
 			Intent conecta= new Intent(this,WeatherService.class);
 			conecta.putExtra(WeatherService.EXTRA_IP,"");
 			conecta.putExtra(WeatherService.EXTRA_PORT,80);
 			startService(conecta);
-
 	}
 
     public void onWeather(View view) {

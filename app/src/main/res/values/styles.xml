@@ -11,7 +11,7 @@
         <item name="android:textColor">#ff33b5e5</item>
     </style>
 
-    <style name="blueSmall" parent="@android:style/TextAppearance.Small">
-        <item name="android:textColor">#ff33b5e5</item>
+    <style name="normalText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/colorText</item>
     </style>
 </resources>
