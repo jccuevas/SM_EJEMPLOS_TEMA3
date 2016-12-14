@@ -87,10 +87,8 @@ public class WeatherActivity extends AppCompatActivity {
 	 * @param view
 	 */
 	public void onNetworkService(View view) {
-			Intent conecta= new Intent(this,WeatherService.class);
-			conecta.putExtra(WeatherService.EXTRA_IP,"");
-			conecta.putExtra(WeatherService.EXTRA_PORT,80);
-			startService(conecta);
+			Intent clima= new Intent(this,WeatherService.class);
+			startService(clima);
 	}
 
     public void onWeather(View view) {
