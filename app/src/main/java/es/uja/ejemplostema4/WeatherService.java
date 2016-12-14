@@ -49,11 +49,15 @@ public class WeatherService extends Service {
         mId = startId; //Se guarda el identificador para poder parar el servicio
         // si fuera necesario
 
-        Toast.makeText(this, getString(R.string.service_weather_startup), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.service_weather_startup)+" ID="+mId, Toast.LENGTH_SHORT).show();
 
         return START_STICKY;
     }
 
+    /**
+     * Inicia la hebra de comprobación de notificaciones, solo se crea una hebra por servicio ya
+     * que onCreate solo se llama una vez en su ciclo de vida
+     */
     @Override
     public void onCreate() {
         super.onCreate();
