@@ -121,15 +121,23 @@ public class NetworkActivity extends AppCompatActivity {
 		go.setOnClickListener(new OnClickListener(){
 			public void onClick(View view)
 			{
-				if (uri != null) {	
-					webView.setWebViewClient(new WebViewClient() {
-						   public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-						     Toast.makeText(NetworkActivity.this, "Oh no! " + description, Toast.LENGTH_SHORT).show();
-						   }
-						 });
+				String murl= mURL.getEditableText().toString();
+                try {
+                    URL url = new URL(murl);
+                    if (uri != null) {
+                        webView.setWebViewClient(new WebViewClient() {
+                            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                                Toast.makeText(NetworkActivity.this, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-					webView.loadUrl(uri.getURLString());
-				}
+                        webView.loadUrl(uri.getURLString());
+                    }
+                } catch (MalformedURLException e) {
+                    mURL.setError("Escribe una URL correcta");
+                }
+
+
 			}
 		});
 	}
