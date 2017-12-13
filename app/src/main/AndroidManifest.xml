@@ -41,8 +41,8 @@
         <receiver
             android:name=".ActivateWeather"
             android:enabled="true"
-            android:exported="true">
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            android:exported="true"
+            android:permission="android.permission.ACCESS_NETWORK_STATE" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
