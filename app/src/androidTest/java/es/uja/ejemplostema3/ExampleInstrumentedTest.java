@@ -1,4 +1,4 @@
-package es.uja.ejemplostema4;
+package es.uja.ejemplostema3;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("es.uja.ejemplostema4", appContext.getPackageName());
+        assertEquals("es.uja.ejemplostema3", appContext.getPackageName());
     }
 }

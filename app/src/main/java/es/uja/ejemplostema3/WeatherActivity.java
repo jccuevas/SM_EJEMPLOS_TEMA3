@@ -1,4 +1,4 @@
-package es.uja.ejemplostema4;
+package es.uja.ejemplostema3;
 
 import android.content.Context;
 import android.content.Intent;

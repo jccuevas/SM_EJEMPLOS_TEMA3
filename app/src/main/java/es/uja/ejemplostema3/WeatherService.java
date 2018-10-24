@@ -1,4 +1,4 @@
-package es.uja.ejemplostema4;
+package es.uja.ejemplostema3;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

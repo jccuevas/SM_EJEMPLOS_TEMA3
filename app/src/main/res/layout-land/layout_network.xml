@@ -8,14 +8,14 @@
 
     <fragment
         android:id="@+id/layout_fragment_network_URL"
-        android:name="es.uja.ejemplostema4.NetworkURLFragment"
+        android:name="es.uja.ejemplostema3.NetworkURLFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/layout_network_url" />
 
     <fragment
         android:id="@+id/layout_fragment_network_web"
-        android:name="es.uja.ejemplostema4.NetworkWebFragment"
+        android:name="es.uja.ejemplostema3.NetworkWebFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/layout_fragment_network_navigation"
-        android:name="es.uja.ejemplostema4.NetworkNavigationFragment"
+        android:name="es.uja.ejemplostema3.NetworkNavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/layout_network_navigation"

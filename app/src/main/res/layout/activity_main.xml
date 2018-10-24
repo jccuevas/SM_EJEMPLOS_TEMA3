@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="es.uja.ejemplostema4.NetworkActivity">
+    tools:context="es.uja.ejemplostema3.NetworkActivity">
 
     <ImageView
         android:id="@+id/network_logo"
