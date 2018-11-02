@@ -69,7 +69,7 @@ public class WeatherActivity extends AppCompatActivity {
 			Toast.makeText(this, "No Conectado", Toast.LENGTH_LONG).show();
 		}
 
-        mStartService = (Button)findViewById(R.id.service_button_startup);
+        mStartService = findViewById(R.id.service_button_startup);
 	}
 
     private void updateUI(){

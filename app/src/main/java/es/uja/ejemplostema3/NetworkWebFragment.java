@@ -23,7 +23,7 @@ public class NetworkWebFragment extends Fragment {
 	
 	public void setText(String text)
 	{
-		TextView t= (TextView) getActivity().findViewById(R.id.network_web_textView_text);
+		TextView t= getActivity().findViewById(R.id.network_web_textView_text);
 		if(t!=null)
 		{
 			t.setText(text);

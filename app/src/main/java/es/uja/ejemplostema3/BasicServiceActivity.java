@@ -19,10 +19,10 @@ public class BasicServiceActivity extends AppCompatActivity {
 
 
 
-        mEditUrl = (EditText) findViewById(R.id.seviceactivity_edit_url);
+        mEditUrl = findViewById(R.id.seviceactivity_edit_url);
 
 
-        Button descargar = (Button) findViewById(R.id.seviceactivity_descargar);
+        Button descargar = findViewById(R.id.seviceactivity_descargar);
         descargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

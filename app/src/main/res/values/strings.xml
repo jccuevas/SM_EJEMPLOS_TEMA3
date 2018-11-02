@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ejemplos Tema 4</string>
+    <string name="app_name">Ejemplos Tema 3</string>
     <string name="app_networking">Networking</string>
 
     <string name="app_service_weather">Servicio Metereológico</string>
@@ -35,5 +35,6 @@
     <string name="service_descargar">Descargar</string>
     <string name="service_description">Ejemplo de descarga de un recurso con FTP</string>
     <string name="service_descargando">Descargando...</string>
-    <string name="dialog_about_title">Acerca de Ejemplos Tema 4</string>
+    <string name="dialog_about_title">Acerca de Ejemplos Tema 3</string>
+    <string name="app_help">Ayuda</string>
 </resources>

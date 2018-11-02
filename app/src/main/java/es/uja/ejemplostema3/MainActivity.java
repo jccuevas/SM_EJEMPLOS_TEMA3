@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             // Inflate and set the layout for the dialog
             // Pass null as the parent view because its going in the dialog layout
             View dialog = inflater.inflate(R.layout.dialog_about, null);
-            mAbout = (WebView)dialog.findViewById(R.id.dialog_about_webview);
+            mAbout = dialog.findViewById(R.id.dialog_about_webview);
             loadInfo();
             builder.setView(dialog)
                     // Add action buttons
@@ -96,20 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         private void loadInfo(){
-            BufferedReader bis = new BufferedReader(new InputStreamReader(getContext().getResources().openRawResource(R.raw.help)));
-            String datos="";
-            String linea="";
-
-            try {
-                linea=bis.readLine();
-                while((linea=bis.readLine())!=null){
-                    datos=datos+linea;
-                }
-                bis.close();
-                mAbout.loadData(datos,"text/html","UTF-8");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            mAbout.loadUrl("file:///android_asset/www/help.html");
         }
 
     }

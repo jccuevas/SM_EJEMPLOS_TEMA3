@@ -61,7 +61,7 @@ public class NetworkActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_network);
 
-		webView = (WebView) findViewById(R.id.network_web_webView);
+		webView = findViewById(R.id.network_web_webView);
 		//WebSettings webSettings = webView.getSettings();
 		//webSettings.setJavaScriptEnabled(true);
 
@@ -109,13 +109,13 @@ public class NetworkActivity extends AppCompatActivity {
 		final NetworkURLFragment uri = (NetworkURLFragment) fm
 				.findFragmentById(R.id.layout_fragment_network_URL);
 
-		mURL = (EditText)findViewById(R.id.network_url_editText_URL);
+		mURL = findViewById(R.id.network_url_editText_URL);
 		
-		postParams = (EditText)findViewById(R.id.network_navigation_edittext_postparams);
+		postParams = findViewById(R.id.network_navigation_edittext_postparams);
 		
-		progressBar = (ProgressBar) findViewById(R.id.network_url_downloadprogress);
+		progressBar = findViewById(R.id.network_url_downloadprogress);
 		
-		Button go = (Button)findViewById(R.id.network_url_browse);
+		Button go = findViewById(R.id.network_url_browse);
 		go.setOnClickListener(new OnClickListener(){
 			public void onClick(View view)
 			{
@@ -155,7 +155,7 @@ public class NetworkActivity extends AppCompatActivity {
 
 			// params comes from the execute() call: params[0] is the url.
 			try {
-				String data=downloadUrl((String) urls[0]);
+				String data=downloadUrl(urls[0]);
 				
 				
 				return data;
@@ -189,7 +189,7 @@ public class NetworkActivity extends AppCompatActivity {
 			try {
 				if(urls.length>=2)
 					
-				return downloadUrlByPost((String) urls[0],urls[1]);
+				return downloadUrlByPost(urls[0],urls[1]);
 				else
 					return null;
 			} catch (IOException e) {
@@ -485,8 +485,7 @@ public class NetworkActivity extends AppCompatActivity {
 		return result;
 	}
 	// Reads an InputStream and converts it to a String.
-	public String readIt(InputStream stream, int len) throws IOException,
-			UnsupportedEncodingException {
+	public String readIt(InputStream stream, int len) throws IOException {
 		Reader reader = null;
 		reader = new InputStreamReader(stream, "UTF-8");
 		char[] buffer = new char[len];

@@ -27,7 +27,7 @@ public class NetworkURLFragment extends Fragment {
 	
 	public URL getURI()
 	{
-		EditText urle = (EditText)getActivity().findViewById(R.id.network_url_editText_URL);
+		EditText urle = getActivity().findViewById(R.id.network_url_editText_URL);
 		
 		try {
 			URL url = new URL(urle.getEditableText().toString());
@@ -43,7 +43,7 @@ public class NetworkURLFragment extends Fragment {
 	
 	public String getURLString()
 	{
-		EditText urle = (EditText)getActivity().findViewById(R.id.network_url_editText_URL);
+		EditText urle = getActivity().findViewById(R.id.network_url_editText_URL);
 		return urle.getEditableText().toString();
 			
 		
