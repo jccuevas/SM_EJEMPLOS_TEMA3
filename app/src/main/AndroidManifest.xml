@@ -43,6 +43,7 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.ACCESS_NETWORK_STATE" >
+            <!--Para compatibilidad con antes de Android 7 (Nougat-->
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

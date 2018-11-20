@@ -55,6 +55,7 @@ public class WeatherService extends Service {
     public void onCreate() {
         super.onCreate();
         mNotificacionManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
         new Thread(new HebraConectarSimple(mWeatherWeb)).start();
     }
 

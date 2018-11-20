@@ -2,6 +2,7 @@ package es.uja.ejemplostema3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ public class WeatherActivity extends AppCompatActivity {
     public static Handler mHandler=null;//Handler para recibir los mensajes de las hebras de trabajo
 	
 	boolean isConnected = false;
+
+	private ActivateWeather receiver=null;
 
 
 
@@ -70,7 +73,16 @@ public class WeatherActivity extends AppCompatActivity {
 		}
 
         mStartService = findViewById(R.id.service_button_startup);
+
+
 	}
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        receiver = new ActivateWeather();
+        registerReceiver(receiver,new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+    }
 
     private void updateUI(){
 
@@ -93,5 +105,12 @@ public class WeatherActivity extends AppCompatActivity {
 
     public void onWeather(View view) {
         Toast.makeText(this,"Icon made by pixel-buddha from www.flaticon.com ",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(receiver!=null)
+            unregisterReceiver(receiver);
     }
 }
