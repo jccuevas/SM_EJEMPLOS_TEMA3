@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,8 +19,9 @@ import java.net.URL;
 
 
 public class WeatherService extends Service {
-   // protected String mWeatherWeb = "https://weather.com/es-ES/tiempo/hoy/l/SPXX1343:1:SP";
-   protected String mWeatherWeb = "http://www.accuweather.com/es/es/linares/306737/weather-forecast/306737";
+
+    // protected String mWeatherWeb = "https://weather.com/es-ES/tiempo/hoy/l/SPXX1343:1:SP";
+    protected String mWeatherWeb = "https://www.accuweather.com/es/es/linares/306737/weather-forecast/306737";
     public static final String KEY_START = "<span class=\"large-temp\">";
 
     private int mId = 1;
@@ -42,7 +44,7 @@ public class WeatherService extends Service {
         mId = startId; //Se guarda el identificador para poder parar el servicio
         // si fuera necesario
 
-        Toast.makeText(this, getString(R.string.service_weather_startup)+" ID="+mId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.service_weather_startup) + " ID=" + mId, Toast.LENGTH_SHORT).show();
 
         return START_STICKY;
     }
@@ -66,18 +68,17 @@ public class WeatherService extends Service {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, WeatherService.class), 0);
 
-        // Preparar la información a mostrar en el panel de notificaciones.
-        NotificationCompat.Builder notificacion =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_weather) // Icono a mostrar
-                        .setContentTitle(getText(R.string.service_weather_label)) //Titulo
-                        .setContentText(mensaje)// Contenido
-                        .setContentIntent(contentIntent); //Intent a abrir
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),MainActivity.CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_weather) // Icono a mostrar
+                .setContentTitle(getText(R.string.service_weather_label)) //Titulo
+                .setContentText(mensaje)// Contenido
+                .setContentIntent(contentIntent); //Intent a abrir
 
-        // Enviar la notificación
-        mNotificacionManager.notify(mId, notificacion.build());
+        notificationManager.notify(101, builder.build());
     }
+
 
     @Override
     public void onDestroy() {
@@ -121,16 +122,15 @@ public class WeatherService extends Service {
 
             }
             //Convert the InputStream into a string
-
-
             int index = contentAsString.indexOf(KEY_START);
             if (index >= 0) {
 
                 contentAsString = contentAsString.substring(index);
-                index=contentAsString.indexOf("&");
+                index = contentAsString.indexOf("&");
                 if (index >= 0) {
                     String temp = contentAsString.substring(KEY_START.length(), index);
-                    mostrarNotificacion("Temperatura en Linares "+temp+"º C");
+                    mostrarNotificacion("Temperatura en Linares " + temp + "º C");
+
                 }
 
             }
